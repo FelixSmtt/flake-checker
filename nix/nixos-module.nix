@@ -34,6 +34,17 @@
       configFile = pkgs.writeText "flake-checker-config.json" (
         builtins.toJSON (cleanNulls config.services.flake-checker.config)
       );
+
+      wrapper =
+        pkgs.runCommand "flake-checker-wrapped"
+          {
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+          }
+          ''
+            mkdir -p $out/bin
+            makeWrapper ${config.services.flake-checker.package}/bin/flake-checker $out/bin/flake-checker \
+              --add-flags "-c ${configFile}"
+          '';
     in
     {
       options.services.flake-checker = {
@@ -57,7 +68,7 @@
         };
       };
       config = lib.mkIf config.services.flake-checker.enable {
-        environment.systemPackages = [ config.services.flake-checker.package ];
+        environment.systemPackages = [ wrapper ];
         systemd.services.flake-checker = {
           description = "Flake Checker";
           wantedBy = [ "multi-user.target" ];

@@ -27,24 +27,7 @@
       imports = [
         ./nix/nixos-module.nix
         ./nix/hm-module.nix
+        ./nix/package.nix
       ];
-
-      perSystem =
-        {
-          system,
-          ...
-        }:
-        let
-          overlays = [ (import rust-overlay) ];
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = overlays;
-          };
-          rustToolchain = pkgs.rust-bin.stable.latest.default;
-          flake-checker-pkg = pkgs.callPackage ./nix/package.nix { inherit rustToolchain; };
-        in
-        {
-          packages.default = flake-checker-pkg;
-        };
     };
 }
