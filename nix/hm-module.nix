@@ -77,6 +77,7 @@
           };
           Service = {
             Type = "oneshot";
+            RemainAfterExit = true;
             ExecStart = "${config.services.flake-checker.package}/bin/flake-checker -c ${configFile}";
             WorkingDirectory = "%h";
             Environment = "RUST_LOG=info";

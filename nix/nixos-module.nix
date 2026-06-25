@@ -75,6 +75,7 @@
           after = [ "network.target" ];
           serviceConfig = {
             Type = "oneshot";
+            RemainAfterExit = true;
             ExecStart = "${config.services.flake-checker.package}/bin/flake-checker -c ${configFile}";
             WorkingDirectory = "/";
             Environment = "RUST_LOG=info";
