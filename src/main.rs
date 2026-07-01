@@ -81,12 +81,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    send_notification(
-        updates,
-        &config.flake_dir,
-        config.terminal_action_label.as_deref(),
-        config.terminal_action_command.as_deref(),
-    );
+    send_notification(updates);
     println!("Check complete.");
     Ok(())
 }

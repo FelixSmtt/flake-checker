@@ -91,9 +91,7 @@ The configuration is a JSON file (or Nix attrset if using the module) with the f
 |--------------------------|---------------------|---------------------------------------------------------------------------------------------------|
 | `flake_lock_path`        | string              | Path to the `flake.lock` file to check.                                                           |
 | `allowed_inputs`         | list of strings     | List of flake input names to check for updates (e.g., `["nixpkgs"]`).                             |
-| `notification_format`    | string (optional)             | Format string for notifications (see placeholders below).                                         |
-| `terminal_action_label`  | string (optional)   | Label for the notification action button.                                                         |
-| `terminal_action_command`| string (optional)   | Command to run when the action is triggered. `{dir}` is replaced with the flake directory.        |
+| `notification_format`    | string (optional)   | Format string for notifications (see placeholders below).                                         |
 
 ### Placeholders for `notification_format`
 

@@ -5,14 +5,9 @@ use std::path::Path;
 #[derive(Debug, Deserialize)]
 pub struct Config {
     pub flake_lock_path: String,
-    pub flake_dir: String,
     pub allowed_inputs: Vec<String>,
     #[serde(default = "default_notification_format")]
     pub notification_format: String,
-    #[serde(default)]
-    pub terminal_action_label: Option<String>,
-    #[serde(default)]
-    pub terminal_action_command: Option<String>,
 }
 
 fn default_notification_format() -> String {
